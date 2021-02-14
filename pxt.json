@@ -1,5 +1,6 @@
 {
     "name": "Run kitty run!",
+    "version": "1.0.0",
     "description": "",
     "dependencies": {
         "device": "*"
