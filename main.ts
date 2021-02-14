@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const Tree = SpriteKind.create()
+    export const MeanDogs = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tilePath4, function (sprite, location) {
     game.over(true, effects.hearts)
@@ -9,6 +10,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass1, function (
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     sayWetPaws()
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.MeanDogs, function (sprite, otherSprite) {
+    game.over(false)
 })
 scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
     sprite.destroy()
@@ -26,7 +30,7 @@ let car3: Sprite = null
 let car2: Sprite = null
 let car1: Sprite = null
 let myCat: Sprite = null
-game.splash("KITTY GO HOME", "Watch out for traffic!")
+game.splash("RUN KITTY RUN", "Watch out for traffic!")
 tiles.setTilemap(tilemap`level1`)
 myCat = sprites.create(img`
     . . . . e e e . . . . e e e 
@@ -60,8 +64,8 @@ let badDog = sprites.create(img`
     . . f f 5 5 4 5 5 5 5 5 f . . . 
     . . . f 5 f f 5 f f f 5 f . . . 
     . . . f f . . f f . . f f . . . 
-    `, SpriteKind.Player)
-badDog.follow(myCat, 75)
+    `, SpriteKind.MeanDogs)
+badDog.follow(myCat, 25)
 scene.cameraFollowSprite(myCat)
 myCat.setPosition(0, 160)
 myCat.setStayInScreen(true)
