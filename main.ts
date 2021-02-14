@@ -1,11 +1,17 @@
 namespace SpriteKind {
     export const Tree = SpriteKind.create()
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.castle.tilePath4, function (sprite, location) {
+    game.over(true, effects.hearts)
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass1, function (sprite, location) {
     sayWetPaws()
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
     sayWetPaws()
+})
+scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
+    sprite.destroy()
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass2, function (sprite, location) {
     sayWetPaws()
@@ -16,9 +22,11 @@ function sayWetPaws () {
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     game.over(false)
 })
+let car3: Sprite = null
 let car2: Sprite = null
 let car1: Sprite = null
 let myCat: Sprite = null
+game.splash("KITTY GO HOME", "Watch out for traffic!")
 tiles.setTilemap(tilemap`level1`)
 myCat = sprites.create(img`
     . . . . e e e . . . . e e e 
@@ -38,7 +46,8 @@ myCat = sprites.create(img`
     `, SpriteKind.Player)
 controller.moveSprite(myCat)
 scene.cameraFollowSprite(myCat)
-myCat.setPosition(12, 15)
+myCat.setPosition(150, 0)
+myCat.setStayInScreen(true)
 let myTree1 = sprites.create(img`
     ................86..................
     ...........6688867886...............
@@ -82,7 +91,7 @@ let myTree1 = sprites.create(img`
     ...............fceeec...............
     ...............ffceec...............
     `, SpriteKind.Tree)
-myTree1.setPosition(200, 47)
+myTree1.setPosition(200, 200)
 let myTree2 = sprites.create(img`
     .............6666...............
     ..........666667766.6666........
@@ -189,5 +198,27 @@ game.onUpdateInterval(500, function () {
             `, SpriteKind.Enemy)
         car2.setPosition(135, 0)
         car2.setVelocity(0, 75)
+    }
+    if (randint(0, 1) == 0) {
+        car3 = sprites.create(img`
+            . . . . . . a a c c a a . . . . 
+            . . . . . a 3 3 3 3 3 3 a . . . 
+            . . . . 3 c 3 3 3 3 3 3 c 3 . . 
+            . . . a 3 c d 3 3 3 3 3 c 3 a . 
+            . . . f 3 3 d 3 3 3 3 3 c 3 f . 
+            . . . f 3 3 d 3 3 3 3 3 3 3 f . 
+            . . . f 3 3 d 3 3 3 3 3 3 3 f . 
+            . . . f 3 c 3 d d 3 3 3 c 3 f . 
+            . . . a 3 c a c c c c a c 3 a . 
+            . . . a 3 a c b b b b c a 3 a . 
+            . . . a 3 a b b b b b b a 3 a . 
+            . . . a a a a a a a a a a a a . 
+            . . . f a d a a a a a a d a f . 
+            . . . f a 3 d a a a a d 3 a f . 
+            . . . f f a a a a a a a a f f . 
+            . . . . f f . . . . . . f f . . 
+            `, SpriteKind.Enemy)
+        car3.setPosition(215, 250)
+        car3.setVelocity(0, -75)
     }
 })
