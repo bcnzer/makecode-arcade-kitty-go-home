@@ -45,8 +45,25 @@ myCat = sprites.create(img`
     . . . f f . . f f . . f f . 
     `, SpriteKind.Player)
 controller.moveSprite(myCat)
+let badDog = sprites.create(img`
+    . . . . 4 4 4 . . . . 4 4 4 . . 
+    . . . 4 5 5 5 e . . e 5 5 5 4 . 
+    . . 4 5 5 5 5 5 e e 5 5 5 5 5 4 
+    . . 4 5 5 4 4 5 5 5 5 4 4 5 5 4 
+    . . e 5 4 4 5 5 5 5 5 5 4 4 5 e 
+    . . . e e 5 5 5 5 5 5 5 5 e e . 
+    . . . . e 5 f 5 5 5 5 f 5 e . . 
+    f f . . f 5 5 5 4 4 5 5 5 f . . 
+    f 5 f . f 6 5 5 f f 5 5 4 f . . 
+    f 5 5 f 4 4 6 6 6 6 6 6 f . . . 
+    . f 5 4 4 5 5 5 5 5 5 4 f . . . 
+    . . f f 5 5 4 5 5 5 5 5 f . . . 
+    . . . f 5 f f 5 f f f 5 f . . . 
+    . . . f f . . f f . . f f . . . 
+    `, SpriteKind.Player)
+badDog.follow(myCat, 75)
 scene.cameraFollowSprite(myCat)
-myCat.setPosition(150, 0)
+myCat.setPosition(0, 160)
 myCat.setStayInScreen(true)
 let myTree1 = sprites.create(img`
     ................86..................
