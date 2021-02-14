@@ -1,13 +1,26 @@
 namespace SpriteKind {
     export const Tree = SpriteKind.create()
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass1, function (sprite, location) {
+    sayWetPaws()
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass3, function (sprite, location) {
+    sayWetPaws()
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.castle.tileDarkGrass2, function (sprite, location) {
+    sayWetPaws()
+})
+function sayWetPaws () {
+    myCat.say("Wet paws!", 250)
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     game.over(false)
 })
 let car2: Sprite = null
 let car1: Sprite = null
+let myCat: Sprite = null
 tiles.setTilemap(tilemap`level1`)
-let myCat = sprites.create(img`
+myCat = sprites.create(img`
     . . . . e e e . . . . e e e 
     . . . . c d d c . . c d d c 
     . . . . c b d d f f d d b c 
@@ -104,7 +117,7 @@ let myTree2 = sprites.create(img`
     ...............fee..............
     ................e...............
     `, SpriteKind.Tree)
-myTree2.setPosition(104, 77)
+myTree2.setPosition(120, 77)
 let myTree3 = sprites.create(img`
     ......cc66......
     .....c6576c.....
@@ -131,7 +144,7 @@ let myTree3 = sprites.create(img`
     .....eeeeee.....
     .......ee.......
     `, SpriteKind.Tree)
-myTree3.setPosition(55, 83)
+myTree3.setPosition(75, 160)
 game.onUpdateInterval(500, function () {
     if (randint(0, 1) == 0) {
         car1 = sprites.create(img`
